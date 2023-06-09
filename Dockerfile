@@ -14,7 +14,7 @@ COPY vendor/ vendor/
 
 ARG storage="tikv"
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags "-linkmode external -extldflags -static -X github.com/kubewharf/kubebrain/cmd/version.Storage=$storage -X "github.com/kubewharf/kubebrain/cmd/version".Date=(date "+%Y-%m-%d-%H:%M:%S")" -o kube-brain ./cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags "-linkmode external -extldflags -static -X github.com/kubewharf/kubebrain/cmd/version.Storage=$storage -X "github.com/kubewharf/kubebrain/cmd/version".Date=$(date "+%Y-%m-%d-%H:%M:%S")" -o kube-brain ./cmd/main.go
 
 
 # Final image creation
