@@ -9,7 +9,6 @@ COPY Dockerfile Dockerfile
 
 # Copy the go source
 COPY cmd/ cmd/
-COPY .git/ .git/
 COPY pkg/ pkg/
 COPY vendor/ vendor/
 
