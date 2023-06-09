@@ -1,13 +1,15 @@
 # Build stage
 FROM golang:1.18.5-alpine as builder
 
-RUN apk add --no-cache gcc musl-dev libc6-compat build-base libc-dev
+RUN apk add --no-cache gcc musl-dev libc6-compat build-base libc-dev git
 WORKDIR /workspace
 COPY go.mod go.mod
 COPY go.sum go.sum
+COPY Dockerfile Dockerfile
 
 # Copy the go source
 COPY cmd/ cmd/
+COPY .git/ .git/
 COPY pkg/ pkg/
 COPY vendor/ vendor/
 
