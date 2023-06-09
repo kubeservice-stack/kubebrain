@@ -31,14 +31,14 @@ jobs:
       matrix:
         include:
           -
-            name: kubebrain-tikv
+            name: tikv
             image: dongjiang1989/kubebrain-tikv:latest
-            file: ./hack/build/Dockerfile
+            file: ./Dockerfile
             platforms: linux/amd64,linux/arm64
           -
-            name: kubebrain-badger
+            name: badger
             image: dongjiang1989/kubebrain-badger:latest
-            file: ./hack/build/Dockerfile
+            file: ./Dockerfile
             platforms: linux/amd64,linux/arm64
 
     steps:
@@ -63,6 +63,7 @@ jobs:
         with:
           file: ${{ matrix.file }}
           platforms: ${{ matrix.platforms }}
+          build-args: storage=${{ matrix.name }}
           push: true
           tags: ${{ matrix.image }}
       - name: Test ${{ matrix.name }}
