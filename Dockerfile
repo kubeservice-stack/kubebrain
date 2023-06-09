@@ -10,7 +10,7 @@ COPY Dockerfile Dockerfile
 # Copy the go source
 COPY cmd/ cmd/
 COPY pkg/ pkg/
-COPY vendor/ vendor/
+RUN go mod download
 
 ARG storage="tikv"
 
