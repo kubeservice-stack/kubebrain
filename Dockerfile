@@ -2,7 +2,7 @@
 FROM golang:1.18.5-alpine as builder
 
 RUN apk add --no-cache gcc musl-dev libc6-compat build-base libc-dev git
-WORKDIR /workspace
+WORKDIR /workspace/github.com/kubewharf/kubebrain/
 COPY go.mod go.mod
 COPY go.sum go.sum
 COPY Dockerfile Dockerfile
@@ -20,6 +20,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags "-linkmode external -extldflag
 # Final image creation
 FROM alpine:latest
 
-COPY --from=builder /workspace/kube-brain .
+COPY --from=builder /workspace/github.com/kubewharf/kubebrain/kube-brain .
 
 ENTRYPOINT ["/kube-brain"]
